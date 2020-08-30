@@ -1,13 +1,20 @@
 <template lang="pug">
     .datepicker__date
-        slot
+        .datepicker__datewrapper(@click="$emit('date-selected', value)")
+            | {{ value }}
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
-    name: 'TDate'
+    name: 'TDate',
+    props: {
+        value: {
+            type: Number,
+            default: 0
+        }
+    }
 })
 </script>
 
@@ -20,5 +27,16 @@ export default defineComponent({
     justify-content: center
     font-size: $dp-dates-font-size
     color: $dp-dates-color
-    line-height: $dp-dates-height
+    height: $dp-dates-height
+.datepicker__datewrapper
+    display: flex
+    justify-content: center
+    align-items: center
+    width: $dp-dates-height
+    border-radius: 50%
+    &:hover
+        cursor: pointer
+        background: #eee
+        box-shadow: 0 0 1px 1px #ddd
+        transition: all 0.1s ease-in-out
 </style>

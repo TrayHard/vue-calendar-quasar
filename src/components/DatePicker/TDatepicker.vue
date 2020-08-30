@@ -1,4 +1,4 @@
-<template lang="pug">
+0<template lang="pug">
     .datepicker
         .datepicker__title
             | {{ monthName }}
@@ -7,7 +7,12 @@
                 .datepicker__weekdayname(v-for="weekDay in weekDayNames") {{ weekDay }}
             .datepicker__dates.flex.row.justify-between.flex-wrap
                 .datepicker__fill-prefix(v-for="prefixFill in numOfPrefixFills")
-                t-date(v-for="dateVal in daysInMonth" :key="dateVal") {{dateVal}}
+                t-date(
+                    v-for="dateVal in daysInMonth"
+                    :key="dateVal"
+                    :value="dateVal"
+                    @date-selected="chooseDate"
+                )
 </template>
 
 <script lang="ts">
@@ -37,6 +42,11 @@ export default defineComponent({
             const firstDayWeekName = new Date(2020, this.month, 1).getDay()
             if (!firstDayWeekName) return 6
             else return firstDayWeekName - 1
+        }
+    },
+    methods: {
+        chooseDate (dateNum: number): void {
+            this.$emit('date-chosen', new Date(2020, this.month, dateNum).toLocaleDateString('ru'))
         }
     }
 })

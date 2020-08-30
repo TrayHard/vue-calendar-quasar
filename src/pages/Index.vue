@@ -1,7 +1,8 @@
 <template lang="pug">
     q-page.column.items-center.justify-center
         q-select.q-mb-lg.month-selector(outlined v-model="monthSelected" :options="monthOptions")
-        t-datepicker(:month="monthSelected.value")
+        t-datepicker.q-mb-lg(:month="monthSelected.value" @date-chosen="val => daySelected = val")
+        q-input(outlined v-model="daySelected")
 </template>
 
 <script lang="ts">
@@ -35,7 +36,8 @@ export default defineComponent({
         ]
         return {
             months,
-            monthSelected: { label: 'Январь', value: 0 }
+            monthSelected: { label: 'Январь', value: 0 },
+            daySelected: null
         }
     }
 })

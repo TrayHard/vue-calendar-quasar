@@ -12,35 +12,33 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import TDate from './TDate.vue';
+import TDate from './TDate.vue'
 
 export default defineComponent({
     name: 'TDatePicker',
     components: { TDate },
+    props: {
+        month: {
+            type: Number,
+            default: 0
+        }
+    },
     computed: {
-        daysInMonth() {
-            //@ts-ignore
-            return new Date(2020, this.month+1, 0).getDate();
+        daysInMonth (): number {
+            return new Date(2020, this.month + 1, 0).getDate()
         },
-        monthName() {
-            return new Date(2020, this.month).toLocaleString('ru', { month: 'long' });
+        monthName (): string {
+            return new Date(2020, this.month).toLocaleString('ru', { month: 'long' })
         },
-        weekDayNames() {
+        weekDayNames () {
             return ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
         },
-        numOfPrefixFills() {
-            let firstDayWeekName = new Date(2020, this.month, 1).getDay();
+        numOfPrefixFills (): number {
+            const firstDayWeekName = new Date(2020, this.month, 1).getDay()
             if (!firstDayWeekName) return 6
-            else return firstDayWeekName - 1;
+            else return firstDayWeekName - 1
         }
-    },
-    data(): {
-        month: number
-    } {
-        return {
-            month: 2
-        }
-    },
+    }
 })
 </script>
 
@@ -48,6 +46,7 @@ export default defineComponent({
 @import 'datepicker.sass'
 
 .datepicker
+    cursor: default
     width: $dp-width
     height: $dp-height
     border-radius: $dp-bradius

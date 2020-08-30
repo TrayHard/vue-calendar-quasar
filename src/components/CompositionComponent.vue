@@ -13,43 +13,42 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent, PropType } from '@vue/composition-api'
+import { defineComponent, PropType } from '@vue/composition-api'
 import { Todo, Meta } from './models'
 
 export default defineComponent({
-  name: 'CompositionComponent',
-  props: {
-    title: {
-      type: String,
-      required: true
+    name: 'CompositionComponent',
+    props: {
+        title: {
+            type: String,
+            required: true
+        },
+        todos: {
+            type: (Array as unknown) as PropType<Todo[]>,
+            default: () => [] as Todo[]
+        },
+        meta: {
+            type: (Object as unknown) as PropType<Meta>,
+            required: true
+        },
+        active: {
+            type: Boolean
+        }
     },
-    todos: {
-      type: (Array as unknown) as PropType<Todo[]>,
-      default: () => [] as Todo[]
+    data (): { clickCount: number } {
+        return {
+            clickCount: 0
+        }
     },
-    meta: {
-      type: (Object as unknown) as PropType<Meta>,
-      required: true
+    methods: {
+        increment (): void {
+            this.clickCount += 1
+        }
     },
-    active: {
-      type: Boolean
+    computed: {
+        todoCount (): number {
+            return this.todos.length
+        }
     }
-  },
-  data (): { clickCount: number } {
-    return {
-      clickCount: 0
-    }
-  },
-  methods: {
-    increment (): void {
-      this.clickCount += 1
-    }
-  },
-  computed: {
-    todoCount (): number {
-      return this.todos.length
-    }
-  }
 })
 </script>

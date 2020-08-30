@@ -28,6 +28,10 @@ export default defineComponent({
     font-size: $dp-dates-font-size
     color: $dp-dates-color
     height: $dp-dates-height
+    &.chosen
+        .datepicker__datewrapper
+            background: $dp-date-chosen-bgcolor
+            color: $dp-date-chosen-color
 .datepicker__datewrapper
     display: flex
     justify-content: center

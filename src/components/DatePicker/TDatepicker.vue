@@ -12,6 +12,7 @@
                     :key="dateVal"
                     :value="dateVal"
                     @date-selected="chooseDate"
+                    :class="{ 'chosen': dateVal === dateChosen }"
                 )
 </template>
 
@@ -44,8 +45,14 @@ export default defineComponent({
             else return firstDayWeekName - 1
         }
     },
+    data (): { dateChosen: number } {
+        return {
+            dateChosen: 0
+        }
+    },
     methods: {
         chooseDate (dateNum: number): void {
+            this.dateChosen = dateNum
             this.$emit('date-chosen', new Date(2020, this.month, dateNum).toLocaleDateString('ru'))
         }
     }

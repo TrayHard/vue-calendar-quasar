@@ -24,6 +24,7 @@ export default defineComponent({
     name: 'TDatePicker',
     components: { TDate },
     props: {
+        // TODO: При изменении месяца сбрасывать dateChosen
         month: {
             type: Number,
             default: 0

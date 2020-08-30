@@ -20,10 +20,10 @@ export default defineComponent({
     computed: {
         daysInMonth() {
             //@ts-ignore
-            return new Date(2020, this.month, 0).getDate();
+            return new Date(2020, this.month+1, 0).getDate();
         },
         monthName() {
-            return new Date().toLocaleString('ru', { month: 'long' });
+            return new Date(2020, this.month).toLocaleString('ru', { month: 'long' });
         },
         weekDayNames() {
             return ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
@@ -38,39 +38,43 @@ export default defineComponent({
         month: number
     } {
         return {
-            month: 7
+            month: 2
         }
     },
 })
 </script>
 
 <style lang="sass" scoped>
+@import 'datepicker.sass'
+
 .datepicker
-    width: 400px
-    height: 280px
-    border-radius: 3px
+    width: $dp-width
+    height: $dp-height
+    border-radius: $dp-bradius
     box-shadow: 0 0 30px -10px #ccc
     padding: 25px
     .datepicker__title
-        color: #777
+        color: $dp-weekheader-color
         font-weight: bold
-        font-size: 16px
+        font-size: $dp-weekheader-font-size
         text-transform: capitalize
         padding-left: 10px
-        margin-bottom: 10px
+        line-height: $dp-title-height
     .datepicker__body
         .datepicker__weekheader
+            line-height: $dp-weekheader-height
             display: flex
             justify-content: center
-            margin-bottom: 10px
             color: #aaa
             .datepicker__weekdayname
                 display: flex
-                flex-basis: 50px
+                flex-basis: $dp-column-width
                 justify-content: center
         .datepicker__dates
+            height: $dp-dates-body-height
             justify-content: left
             .datepicker__fill-prefix
                 display: flex
-                flex-basis: 50px
+                flex-basis: $dp-column-width
+                line-height: $dp-dates-height
 </style>

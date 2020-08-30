@@ -12,11 +12,13 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import 'datepicker.sass'
+
 .datepicker__date
     display: flex
-    flex-basis: 50px
+    flex-basis: $dp-column-width
     justify-content: center
-    font-size: 15px
-    color: #888
-    line-height: 30px
+    font-size: $dp-dates-font-size
+    color: $dp-dates-color
+    line-height: $dp-dates-height
 </style>
